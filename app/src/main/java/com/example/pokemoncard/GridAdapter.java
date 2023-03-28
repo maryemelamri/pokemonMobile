@@ -12,12 +12,15 @@ public class GridAdapter extends BaseAdapter {
 
     Context context;
     Pokemon[] pokemons;
+    int [] image;
     LayoutInflater inflater;
 
-    public GridAdapter(Context context, Pokemon[] pokemons) {
+    public GridAdapter(Context context, Pokemon[] pokemons, int []image){
         this.context = context;
         this.pokemons = pokemons;
+        this.image = image;
     }
+
 
     @Override
     public int getCount() {
