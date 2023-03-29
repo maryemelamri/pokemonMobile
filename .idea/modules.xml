@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pokemonCard.iml" filepath="$PROJECT_DIR$/.idea/modules/pokemonCard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pokemonCard.app.unitTest.iml" />
+    </modules>
+  </component>
+</project>
