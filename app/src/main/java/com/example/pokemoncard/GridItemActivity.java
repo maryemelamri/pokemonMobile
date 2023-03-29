@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
         private TextView txt;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+
             super.onCreate(savedInstanceState);
+            System.out.println("Im here  eeeeeeeeeeee");
             setContentView(R.layout.grid_item);
             img = (ImageView) findViewById(R.id.item_img);
             txt = (TextView) findViewById(R.id.item_text);
