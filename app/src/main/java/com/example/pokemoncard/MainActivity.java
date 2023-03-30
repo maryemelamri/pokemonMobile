@@ -1,9 +1,13 @@
 package com.example.pokemoncard;
 
+
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -11,6 +15,8 @@ import android.widget.GridView;
 import com.example.pokemoncard.Api.pokeService;
 import com.example.pokemoncard.repository.PokemonRepository;
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Pokemon[] pk = new Pokemon[]{
+        /*Pokemon[] pk = new Pokemon[]{
 
                 new Pokemon("pk1",R.drawable._02),
                 new Pokemon("pk1",R.drawable._03),
@@ -52,14 +58,15 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("imgPok",imgs[i]);
                 startActivity(intent);
             }
-        });
+        });*/
         retrofit = new Retrofit.Builder()
-                .baseUrl("pokeapi.co/api/v2/")
+                .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        Log.i("Info", "onCreate: 9bal data");
+        getData();
 
-
-
+        Log.i("Info", "onCreate: data jat");
     }
     //charge data
     private void getData(){
@@ -70,13 +77,21 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onResponse(Call<PokemonRepository> call, Response<PokemonRepository> response) {
             if (response.isSuccessful()){
+                PokemonRepository pkrepo = response.body();
+                ArrayList<Pokemon> listPk = pkrepo.getResults();
+                for (int i = 0; i < listPk.size(); i++) {
+                    Pokemon p = listPk.get(i);
+                    Log.e("info","Pokemon: "+ p.getName());
+                }
 
+            }else {
+                Log.e("info","on response: "+response.body());
             }
         }
 
         @Override
         public void onFailure(Call<PokemonRepository> call, Throwable t) {
-
+            Log.e("info","on failure: "+t.getMessage());
         }
     });
     }
