@@ -3,6 +3,8 @@ package com.example.pokemoncard;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.icu.text.IDNA;
@@ -26,13 +28,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private Retrofit retrofit;
-
-
+    private RecyclerView recView;
+    private listpokemonAdapter listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recView = findViewById(R.id.gridview);
+        listAdapter = new listpokemonAdapter();
+        recView.setAdapter(listAdapter);
+        recView.setHasFixedSize(true);
+        GridLayoutManager gridManager = new GridLayoutManager(this,2);
+        recView.setLayoutManager(gridManager);
+
+
         /*Pokemon[] pk = new Pokemon[]{
 
                 new Pokemon("pk1",R.drawable._02),
@@ -73,16 +84,14 @@ public class MainActivity extends AppCompatActivity {
         //so we could could variable service
     pokeService service = retrofit.create(pokeService.class );
     Call<PokemonRepository> PokemonRepositoryCall= service.listPoke();
+
     PokemonRepositoryCall.enqueue(new Callback<PokemonRepository>() {
         @Override
         public void onResponse(Call<PokemonRepository> call, Response<PokemonRepository> response) {
             if (response.isSuccessful()){
                 PokemonRepository pkrepo = response.body();
                 ArrayList<Pokemon> listPk = pkrepo.getResults();
-                for (int i = 0; i < listPk.size(); i++) {
-                    Pokemon p = listPk.get(i);
-                    Log.e("info","Pokemon: "+ p.getName());
-                }
+               listAdapter.dragdata(listPk);
 
             }else {
                 Log.e("info","on response: "+response.body());

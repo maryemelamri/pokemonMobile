@@ -15,7 +15,7 @@
 
     <TextView
 
-        android:id="@+id/text_view"
+        android:id="@+id/grid_text"
 
         android:layout_width="166dp"
         android:layout_height="55dp"

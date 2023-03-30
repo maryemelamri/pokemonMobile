@@ -50,7 +50,7 @@ public class GridAdapter extends BaseAdapter {
         }
 
         ImageView imageView = convertView.findViewById(R.id.grid_image);
-        TextView textView = convertView.findViewById(R.id.text_view);
+        TextView textView = convertView.findViewById(R.id.grid_text);
 
         imageView.setImageResource(pokemons[position].getUrl());
         textView.setText(pokemons[position].getName());
