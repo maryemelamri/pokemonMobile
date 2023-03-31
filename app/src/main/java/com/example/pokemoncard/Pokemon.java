@@ -1,8 +1,10 @@
 package com.example.pokemoncard;
 
 public class Pokemon {
+    private int id;
 
     private String name;
+    private String url;
     private int img;
 
     public Pokemon(String name, int url)  {
@@ -12,6 +14,24 @@ public class Pokemon {
 
     public int getUrl() {
         return img;
+    }
+
+    public int getId() {
+        String [] urlPartes = url.split("/");
+        return Integer.parseInt(urlPartes[urlPartes.length-1]);
+
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
     }
 
     public void setUrl(int url) {

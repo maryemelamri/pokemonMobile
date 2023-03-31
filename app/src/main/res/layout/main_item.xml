@@ -11,7 +11,8 @@
         android:id="@+id/grid_image"
         android:layout_width="152dp"
         android:layout_height="190dp"
-        android:adjustViewBounds="true" />
+        android:layout_gravity="center_horizontal"
+    />
 
     <TextView
 

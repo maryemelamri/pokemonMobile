@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recView = findViewById(R.id.gridview);
-        listAdapter = new listpokemonAdapter();
+        listAdapter = new listpokemonAdapter(this);
         recView.setAdapter(listAdapter);
         recView.setHasFixedSize(true);
         GridLayoutManager gridManager = new GridLayoutManager(this,2);

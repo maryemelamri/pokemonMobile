@@ -1,5 +1,8 @@
 package com.example.pokemoncard;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
@@ -9,12 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 public class listpokemonAdapter  extends RecyclerView.Adapter<listpokemonAdapter.ViewHolder> {
     ArrayList<Pokemon> listPk ;
+    private Context context;
 
-    public listpokemonAdapter() {
+    public listpokemonAdapter(Context context) {
+        this.context=context;
         listPk = new ArrayList<>();
     }
 
@@ -30,6 +38,13 @@ public class listpokemonAdapter  extends RecyclerView.Adapter<listpokemonAdapter
     public void onBindViewHolder(ViewHolder holder, int position) {
         Pokemon p = listPk.get(position);
        holder.item_name.setText(p.getName());
+        Glide.with(context)
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+p.getId() +".png")
+                .centerCrop()
+                .transition(withCrossFade())
+                //.crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.grid_imag);
     }
 
     @Override
