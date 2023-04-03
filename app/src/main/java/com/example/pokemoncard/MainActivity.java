@@ -2,21 +2,17 @@ package com.example.pokemoncard;
 
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 
 import com.example.pokemoncard.Api.pokeService;
+import com.example.pokemoncard.entities.Pokemon;
 import com.example.pokemoncard.repository.PokemonRepository;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -30,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private RecyclerView recView;
     private listpokemonAdapter listAdapter;
+    private int offset;
+    private boolean done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +40,27 @@ public class MainActivity extends AppCompatActivity {
         recView.setHasFixedSize(true);
         GridLayoutManager gridManager = new GridLayoutManager(this,2);
         recView.setLayoutManager(gridManager);
+        //add scroll methode katb9a tzad kolma scrollina
+
+        recView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy >0){
+                    int visibleItemCount = gridManager.getChildCount();
+                    int totalItemCount = gridManager.getItemCount();
+                    int pastVisibileItems = gridManager.findFirstVisibleItemPosition();
+
+                    if (done){
+                        if((visibleItemCount+ pastVisibileItems)>= totalItemCount)
+                            Log.e("info","++ End of List ++");
+                            done = false;
+                            offset+=20;
+                            getData(offset);
+                    }
+                }
+            }
+        });
 
 
         /*Pokemon[] pk = new Pokemon[]{
@@ -73,21 +92,23 @@ public class MainActivity extends AppCompatActivity {
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                .build(); done=true;
         Log.i("Info", "onCreate: 9bal data");
-        getData();
+        offset =0;
+        getData(offset);
 
         Log.i("Info", "onCreate: data jat");
     }
     //charge data
-    private void getData(){
+    private void getData(int offset){
         //so we could could variable service
     pokeService service = retrofit.create(pokeService.class );
-    Call<PokemonRepository> PokemonRepositoryCall= service.listPoke();
+    Call<PokemonRepository> PokemonRepositoryCall= service.listPoke(20,offset);
 
     PokemonRepositoryCall.enqueue(new Callback<PokemonRepository>() {
         @Override
         public void onResponse(Call<PokemonRepository> call, Response<PokemonRepository> response) {
+            done=true;
             if (response.isSuccessful()){
                 PokemonRepository pkrepo = response.body();
                 ArrayList<Pokemon> listPk = pkrepo.getResults();
@@ -100,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFailure(Call<PokemonRepository> call, Throwable t) {
+            done=true;
             Log.e("info","on failure: "+t.getMessage());
         }
     });

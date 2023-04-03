@@ -1,6 +1,6 @@
 package com.example.pokemoncard.repository;
 
-import com.example.pokemoncard.Pokemon;
+import com.example.pokemoncard.entities.Pokemon;
 
 import java.util.ArrayList;
 

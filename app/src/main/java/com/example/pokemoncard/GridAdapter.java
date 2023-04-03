@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pokemoncard.entities.Pokemon;
+
 public class GridAdapter extends BaseAdapter {
 
     Context context;

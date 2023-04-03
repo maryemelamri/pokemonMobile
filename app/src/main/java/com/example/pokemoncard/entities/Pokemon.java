@@ -1,9 +1,12 @@
-package com.example.pokemoncard;
+package com.example.pokemoncard.entities;
+
+import com.google.gson.annotations.SerializedName;
 
 public class Pokemon {
     private int id;
-
+@SerializedName("name")
     private String name;
+    @SerializedName("name")
     private String url;
     private int img;
 
