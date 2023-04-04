@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Pokemon {
     private int id;
-@SerializedName("name")
-    private String name;
     @SerializedName("name")
+    private String name;
+    @SerializedName("url")
     private String url;
     private int img;
 
