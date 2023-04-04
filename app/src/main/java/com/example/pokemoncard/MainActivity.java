@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
-import com.example.pokemoncard.Api.pokeService;
+import com.example.pokemoncard.Api.PokeService;
 import com.example.pokemoncard.entities.Pokemon;
-import com.example.pokemoncard.repository.PokemonRepository;
+import com.example.pokemoncard.entities.ListPoke;
 
 import java.util.ArrayList;
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //add scroll methode katb9a tzad kolma scrollina
 
         recView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
@@ -98,20 +102,35 @@ public class MainActivity extends AppCompatActivity {
         getData(offset);
 
         Log.i("Info", "onCreate: data jat");
+        recView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        Intent intent = new Intent(MainActivity.this, GridItemActivity.class);
+                        intent.putExtra("id", position+1);// put url data in Intent
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
     }
     //charge data
     private void getData(int offset){
         //so we could could variable service
-    pokeService service = retrofit.create(pokeService.class );
-    Call<PokemonRepository> PokemonRepositoryCall= service.listPoke(20,offset);
+    PokeService service = retrofit.create(PokeService.class );
 
-    PokemonRepositoryCall.enqueue(new Callback<PokemonRepository>() {
+    Call<ListPoke> ListPokeCall = service.listPoke(20,offset);
+
+    ListPokeCall.enqueue(new Callback<ListPoke>() {
         @Override
-        public void onResponse(Call<PokemonRepository> call, Response<PokemonRepository> response) {
+        public void onResponse(Call<ListPoke> call, Response<ListPoke> response) {
             done=true;
             if (response.isSuccessful()){
-                PokemonRepository pkrepo = response.body();
-                ArrayList<Pokemon> listPk = pkrepo.getResults();
+                ListPoke pkrepo = response.body();
+                ArrayList<Pokemon> listPk = pkrepo.getArrayPoke();
                listAdapter.dragdata(listPk);
 
             }else {
@@ -120,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onFailure(Call<PokemonRepository> call, Throwable t) {
+        public void onFailure(Call<ListPoke> call, Throwable t) {
             done=true;
             Log.e("info","on failure: "+t.getMessage());
         }
