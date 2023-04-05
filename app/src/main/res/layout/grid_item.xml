@@ -137,21 +137,16 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <com.skydoves.progressview.ProgressView
-                android:id="@+id/progress_hp"
+
+            <ProgressBar
+                android:id="@+id/hpbar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
-                android:layout_marginStart="70dp"
                 android:layout_marginEnd="30dp"
-                app:progressView_animation="bounce"
-                app:progressView_colorBackground="#BDBFC4"
-                app:progressView_colorProgress="#FF5656"
-                app:progressView_labelColorInner="@color/black"
-                app:progressView_labelColorOuter="@color/black"
-                app:progressView_labelSize="18sp"
-                app:progressView_labelTypeface="italic"
-                app:progressView_max="300"
-                app:progressView_radius="15dp" />
+                android:layout_marginStart="70dp"
+                android:progressDrawable="@drawable/custom_progress_bg"
+                />
 
         </RelativeLayout>
 
@@ -173,21 +168,17 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <com.skydoves.progressview.ProgressView
-                android:id="@+id/progress_atk"
+            <ProgressBar
+                android:id="@+id/atkbar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
-                android:layout_marginStart="70dp"
                 android:layout_marginEnd="30dp"
-                app:progressView_animation="bounce"
-                app:progressView_colorBackground="#BDBFC4"
-                app:progressView_colorProgress="#11B0D1"
-                app:progressView_labelColorInner="@color/black"
-                app:progressView_labelColorOuter="@color/black"
-                app:progressView_labelSize="18sp"
-                app:progressView_labelTypeface="italic"
-                app:progressView_max="300"
-                app:progressView_radius="15dp" />
+                android:layout_marginStart="70dp"
+                android:progressDrawable="@drawable/custom_progress_bg"
+                />
+
+
 
         </RelativeLayout>
 
@@ -209,21 +200,15 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <com.skydoves.progressview.ProgressView
-                android:id="@+id/progress_def"
+            <ProgressBar
+                android:id="@+id/defbar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
-                android:layout_marginStart="70dp"
                 android:layout_marginEnd="30dp"
-                app:progressView_animation="bounce"
-                app:progressView_colorBackground="#BDBFC4"
-                app:progressView_colorProgress="#F970A1"
-                app:progressView_labelColorInner="@color/black"
-                app:progressView_labelColorOuter="@color/black"
-                app:progressView_labelSize="18sp"
-                app:progressView_labelTypeface="italic"
-                app:progressView_max="300"
-                app:progressView_radius="15dp" />
+                android:layout_marginStart="70dp"
+                android:progressDrawable="@drawable/custom_progress_bg"
+                />
 
         </RelativeLayout>
 
@@ -245,21 +230,16 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <com.skydoves.progressview.ProgressView
-                android:id="@+id/progress_spd"
+
+            <ProgressBar
+                android:id="@+id/spdbar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
-                android:layout_marginStart="70dp"
                 android:layout_marginEnd="30dp"
-                app:progressView_animation="bounce"
-                app:progressView_colorBackground="#BDBFC4"
-                app:progressView_colorProgress="#5AC18E"
-                app:progressView_labelColorInner="@color/black"
-                app:progressView_labelColorOuter="@color/black"
-                app:progressView_labelSize="18sp"
-                app:progressView_labelTypeface="italic"
-                app:progressView_max="300"
-                app:progressView_radius="15dp" />
+                android:layout_marginStart="70dp"
+                android:progressDrawable="@drawable/custom_progress_bg"
+                />
 
         </RelativeLayout>
 
@@ -281,21 +261,16 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <com.skydoves.progressview.ProgressView
-                android:id="@+id/progress_exp"
+
+            <ProgressBar
+                android:id="@+id/expbar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
-                android:layout_marginStart="70dp"
                 android:layout_marginEnd="30dp"
-                app:progressView_animation="bounce"
-                app:progressView_colorBackground="#BDBFC4"
-                app:progressView_colorProgress="#7DB0DF"
-                app:progressView_labelColorInner="@color/black"
-                app:progressView_labelColorOuter="@color/black"
-                app:progressView_labelSize="18sp"
-                app:progressView_labelTypeface="italic"
-                app:progressView_max="1000"
-                app:progressView_radius="15dp" />
+                android:layout_marginStart="70dp"
+                android:progressDrawable="@drawable/custom_progress_bg"
+                />
 
         </RelativeLayout>
 

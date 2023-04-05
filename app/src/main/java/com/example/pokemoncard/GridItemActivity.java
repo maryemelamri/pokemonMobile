@@ -3,7 +3,9 @@ package com.example.pokemoncard;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +30,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GridItemActivity extends AppCompatActivity {
 
         private int id;
+        private int currentProgress =0;
+        private ProgressBar progressBar ;
+
+
 
         private ImageView imgView;
         private TextView namePoke;
@@ -36,6 +42,7 @@ public class GridItemActivity extends AppCompatActivity {
         private Retrofit retrofit;
         private ArrayList<TypesPoke> typesData= new ArrayList<>();
         private ArrayList<StatesPoke> stateData =new ArrayList<>();
+         View v;
 
 
 
@@ -66,10 +73,14 @@ public class GridItemActivity extends AppCompatActivity {
             PokeService pokeService = retrofit.create(PokeService.class);
             Call<PokemonInfo> pokemonInfo = pokeService.pokemonInfo(id);
 
+
+
             pokemonInfo.enqueue(new Callback<PokemonInfo>() {
 
                 @Override
                 public void onResponse(Call<PokemonInfo> call, Response<PokemonInfo> response) {
+
+
                     if(response.isSuccessful()){
 
                         PokemonInfo pokemonInfo = response.body();
@@ -88,18 +99,43 @@ public class GridItemActivity extends AppCompatActivity {
                         for (int i = 0; i < stateList.size(); i++) {
                             StatesPoke state = stateList.get(i);
                             String baseState = state.getBaseStat();
+
                             String stateName = state.getState().getName();
                             //System.out.println("    :::"+baseState);
                             stateData.add(new StatesPoke(stateName,baseState));
+                            if(stateName.equals("hp")){
+                                progressBar = findViewById(R.id.hpbar);
+                                progressBar.setMax(300);
+                                progressBar.setProgress(Integer.parseInt(baseState));
+                            }
+                            if(stateName.equals("attack")){
+                                progressBar = findViewById(R.id.atkbar);
+                                progressBar.setMax(300);
+                                progressBar.setProgress(Integer.parseInt(baseState));
+                            }
+                            if(stateName.equals("defense")){
+                                progressBar = findViewById(R.id.defbar);
+                                progressBar.setMax(300);
+                                progressBar.setProgress(Integer.parseInt(baseState));
+                            }
+                            if(stateName.equals("speed")){
+                                progressBar = findViewById(R.id.spdbar);
+                                progressBar.setMax(300);
+                                progressBar.setProgress(Integer.parseInt(baseState));
+                            }
                         }
 
-                        PokemonInfo pkInfo = new PokemonInfo(pokemonInfo.getName(), stateData, typesData, pokemonInfo.getHeight(), pokemonInfo.getWeight());
+
+                        PokemonInfo pkInfo = new PokemonInfo(pokemonInfo.getName(), stateData, typesData, pokemonInfo.getHeight(), pokemonInfo.getWeight(),pokemonInfo.getExpBase());
                         System.out.println(pkInfo.toString());
                         namePoke.setText(pkInfo.getName());
                         String heightFormatted = String.format("%.1f M", (float) pkInfo.getHeight() / 10);
                         String weightFormatted = String.format("%.1f KG", (float) pkInfo.getWeight() / 10);
                         height.setText(heightFormatted);
                         weight.setText(weightFormatted);
+                        progressBar = findViewById(R.id.expbar);
+                        progressBar.setMax(1000);
+                        progressBar.setProgress(pokemonInfo.getExpBase());
                         /*progressBarLiveData.setValue(false);
                         pokemonInfoLiveData.setValue(pkInfo);*/
                     }else{
@@ -113,6 +149,11 @@ public class GridItemActivity extends AppCompatActivity {
                     Log.e("Info", " Error: " + t.getMessage());
                 }
             });
+
+
+
+
+
 
         }
 
