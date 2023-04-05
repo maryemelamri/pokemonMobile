@@ -39,6 +39,9 @@ public class GridItemActivity extends AppCompatActivity {
         private TextView namePoke;
         private TextView weight;
         private TextView height;
+        private TextView type1;
+
+
         private Retrofit retrofit;
         private ArrayList<TypesPoke> typesData= new ArrayList<>();
         private ArrayList<StatesPoke> stateData =new ArrayList<>();
@@ -60,7 +63,7 @@ public class GridItemActivity extends AppCompatActivity {
             weight = (TextView) findViewById(R.id.weight); // init a ImageView
             height = (TextView) findViewById(R.id.height);
             Glide.with(this)
-                    .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+id+".png")
+                    .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/"+id+".png")
                     .centerCrop()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgView);
@@ -91,8 +94,17 @@ public class GridItemActivity extends AppCompatActivity {
                         for (int i = 0; i < typesList.size(); i++) {
                             TypesPoke type = typesList.get(i);
                             String nameType = type.getType().getName();
-                            //System.out.println("     ::"+nameType);
+                            System.out.println("   naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaame  ::"+nameType);
+                            System.out.println("   naaaaaaiddddddddddddddd  ::"+i);
                             typesData.add(new TypesPoke(nameType));
+                             if(i==0){
+                                 type1 = findViewById(R.id.type1);
+                                 type1.setText(nameType);
+                             }
+                            if(i==1){
+                                type1 = findViewById(R.id.type2);
+                                type1.setText(nameType);
+                            }
                         }
 
                         List<StatesPoke> stateList = pokemonInfo.getStats();

@@ -40,7 +40,9 @@ public class listpokemonAdapter  extends RecyclerView.Adapter<listpokemonAdapter
         Pokemon p = listPk.get(position);
        holder.item_name.setText(p.getName());
         Glide.with(context)
-                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+p.getId() +".png")
+
+
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/"+p.getId() +".png")
                 .centerCrop()
                 .transition(withCrossFade())
                 //.crossFade()

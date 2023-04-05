@@ -11,13 +11,7 @@
         android:layout_height="match_parent"
         android:descendantFocusability="blocksDescendants">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="69dp"
-            android:layout_height="78dp"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
+
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -273,6 +267,51 @@
                 />
 
         </RelativeLayout>
+
+    <RelativeLayout android:id="@+id/layoutTyeps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutEXP"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/typesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+
+            android:layout_marginTop="10dp"
+            android:text="TYPES"
+            android:textColor="#999999"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+        <TextView
+            android:id="@+id/type1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#738A93"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="80dp"
+            android:layout_below="@+id/layoutTyeps"
+
+
+
+            />
+        <TextView
+            android:id="@+id/type2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#738A93"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="80dp"
+            android:layout_below="@+id/layoutTyeps"
+            />
+
+
 
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

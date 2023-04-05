@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class TypesPoke {
     public String nameType;
 
+    public int id;
+
     public TypesPoke(String nameType) {
         this.nameType = nameType;
     }
